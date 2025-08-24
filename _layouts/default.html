@@ -869,20 +869,29 @@
 
 
 
+
+
+
 <!-- Access Modal -->
 <div class="modal fade" id="access-modal" tabindex="-1" role="dialog" aria-labelledby="accessModal"
   aria-hidden="false">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content perfect-scrollbar">
-      <div class="modal-header d-flex justify-content-between align-items-center">
-        <div class="container">
+      
+      <!-- Header con sfondo blu e X allineata -->
+      <div class="modal-header bg-primary text-white d-flex justify-content-between align-items-center">
         <h2 class="mb-0" id="accessModal">Accedi ai servizi</h2>
-        </div>
-        </div>
+        <button type="button" class="close text-white" data-dismiss="modal" aria-label="Chiudi">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
       <div class="modal-body">
         <form id="login-form" class="access-main-wrapper">
           <div class="container">
             <div class="row variable-gutters justify-content-center pt-4 pt-xl-5">
+              
+              <!-- Colonna bottoni -->
               <div class="col-lg-4">
                 <p class="text-intro">
                   Da qui puoi accedere ai diversi servizi della scuola che richiedono
@@ -893,10 +902,9 @@
                   <a class="btn btn-petrol btn-block btn-lg rounded mb-3" href="#">Registro genitori</a>
                 </div>
               </div>
+
+              <!-- Colonna login -->
               <div class="col-lg-4 offset-lg-2 access-mobile-bg">
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Chiudi">
-                        <span aria-hidden="true">&times;</span> <!-- X a destra -->
-                      </button>
                 <div class="access-login">
                   <h3>Personale scolastico</h3>
                   <p class="text-large">
@@ -941,6 +949,7 @@
                   </div>
                 </div>
               </div>
+
             </div>
           </div>
         </form>
@@ -949,10 +958,6 @@
   </div>
 </div>
 <!-- End Access Modal -->
-
-
-
-
 
 
 
