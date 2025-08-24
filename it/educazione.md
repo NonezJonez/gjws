@@ -6,13 +6,8 @@ lang: it
 ref: homepage
 permalink: /dipartimenti/educativo/
 order: 1
+argomento: edu
 ---
 
 {% include heroedu.html %}
-
-<main class="container my-4" markdown="1">
-
-{% include postsedu.html %}
-
-</main>
 
