@@ -1,0 +1,41 @@
+---
+layout: default
+---
+
+<h1>Argomento: {{ page.argomento }}</h1>
+
+<h2>Post</h2>
+<ul>
+  {% for post in site.posts %}
+    {% if post.argomento == page.argomento %}
+      <li><a href="{{ post.url }}">{{ post.title }}</a></li>
+    {% endif %}
+  {% endfor %}
+</ul>
+
+<h2>Pagine</h2>
+<ul>
+  {% for page in site.pages %}
+    {% if page.argomento == page.argomento %}
+      <li><a href="{{ page.url }}">{{ page.title }}</a></li>
+    {% endif %}
+  {% endfor %}
+</ul>
+
+<h2>Documenti</h2>
+<ul>
+  {% for doc in site.docs %}
+    {% if doc.argomento == page.argomento %}
+      <li><a href="{{ doc.url }}">{{ doc.title }}</a></li>
+    {% endif %}
+  {% endfor %}
+</ul>
+
+<h2>Persone</h2>
+<ul>
+  {% for person in site.persone %}
+    {% if person.argomento == page.argomento %}
+      <li><a href="{{ person.url }}">{{ person.title }}</a></li>
+    {% endif %}
+  {% endfor %}
+</ul>
