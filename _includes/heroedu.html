@@ -1,0 +1,47 @@
+<div class="it-hero-wrapper it-dark it-overlay it-bottom-overlapping-content">
+  <div class="img-responsive-wrapper">
+    <div class="img-responsive">
+      <div class="img-wrapper">
+        <img src="{{ page.hero_image | default: 'https://www.hopkinsmedicine.org/-/media/images/health/3_-wellness/kids-and-teens-health/children-lying-on-a-mat-resized.jpg?h=500&iar=0&mh=500&mw=1300&w=1297&hash=D590C3D217BBB98C8D3096D8FA3CCA6C' }}" title="{{ page.hero_title | default: 'img title' }}" alt="{{ page.hero_alt | default: 'imagealt' }}">
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="it-hero-text-wrapper bg-dark">
+          <h1 class="no_toc">{{ page.title }}</h1>
+          <p class="d-none d-lg-block">{{ page.description }}</p>
+          {% if page.hero_link %}
+          <div class="it-btn-container">
+            <a class="btn btn-sm btn-secondary" href="{{ page.hero_link.url }}">{{ page.hero_link.label }}</a>
+          </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <div class="card-wrapper card-space">
+        <div class="card card-bg">
+          <div class="card-body">
+            <h5 class="card-title">{{ page.card_title | default: "Lorem ipsum dolor sit amet…" }}</h5>
+            <p class="card-text">{{ page.card_text | default: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." }}</p>
+            {% if page.card_link %}
+            <a class="read-more" href="{{ page.card_link.url }}">
+              <span class="text">{{ page.card_link.label }}</span>
+              <svg class="icon">
+                <use xlink:href="{{ site.baseurl }}/assets/bootstrap-italia/dist/svg/sprite.svg#it-arrow-right"></use>
+              </svg>
+            </a>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
