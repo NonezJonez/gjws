@@ -6,7 +6,6 @@ lang: it
 ref: homepage
 permalink: /dipartimenti/educativo/
 order: 1
-argomento: edu
 ---
 
 {% include heroedu.html %}
