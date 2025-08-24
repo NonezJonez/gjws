@@ -856,86 +856,122 @@
     </div>
     <!-- End Search Modal -->
 
-    <!-- Access Modal -->
-    <div class="modal fade" id="access-modal" tabindex="-1" role="dialog" aria-labelledby="accessModal"
-      aria-hidden="false">
-      <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content perfect-scrollbar">
-          <div class="modal-body">
-            <form class="access-main-wrapper">
-              <div class="container">
-                <div class="row variable-gutters mb-0 mb-lg-4 mb-xl-5">
-                  <div class="col">
-                    <h2 class="d-inline" id="accessModal">
-                      Accedi ai servizi
-                    </h2>
-                    <button type="button" class="close dismiss" data-dismiss="modal" aria-label="Chiudi">
-                      <svg class="svg-cancel-large">
-                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="###svg-cancel-large"></use>
-                      </svg>
-                    </button>
-                  </div>
+
+
+<!-- Access Modal -->
+<div class="modal fade" id="access-modal" tabindex="-1" role="dialog" aria-labelledby="accessModal"
+  aria-hidden="false">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content perfect-scrollbar">
+      <div class="modal-header">
+        <h2 class="d-inline" id="accessModal">Accedi ai servizi</h2>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Chiudi">
+          <span aria-hidden="true">&times;</span> <!-- X per chiudere -->
+        </button>
+      </div>
+      <div class="modal-body">
+        <form id="login-form" class="access-main-wrapper">
+          <div class="container">
+            <div class="row variable-gutters justify-content-center pt-4 pt-xl-5">
+              <div class="col-lg-4">
+                <p class="text-intro">
+                  Da qui puoi accedere ai diversi servizi della scuola che richiedono
+                  un'autenticazione personale.
+                </p>
+                <div class="access-buttons">
+                  <a class="btn btn-petrol btn-block btn-lg rounded mb-3" href="#">Registro insegnanti</a>
+                  <a class="btn btn-petrol btn-block btn-lg rounded mb-3" href="#">Registro genitori</a>
                 </div>
-                <div class="row variable-gutters justify-content-center pt-4 pt-xl-5">
-                  <div class="col-lg-4">
-                    <p class="text-intro">Da qui puoi accedere ai diversi servizi della scuola che richiedono
-                      un'autenticazione personale.</p>
-                    <div class="access-buttons">
-                      <a class="btn btn-petrol btn-block btn-lg rounded mb-3" href="###">Registro insegnanti</a>
-                      <a class="btn btn-petrol btn-block btn-lg rounded mb-3" href="###">Registro genitori</a>
+              </div>
+              <div class="col-lg-4 offset-lg-2 access-mobile-bg">
+                <div class="access-login">
+                  <h3>Personale scolastico</h3>
+                  <p class="text-large">
+                    Entra nel sito della scuola con le tue credenziali per gestire contenuti,
+                    visualizzare circolari e altre funzionalità.
+                  </p>
+                  <div class="access-login-form">
+                    <div class="form-group">
+                      <label for="email">Email address</label>
+                      <input id="email" type="email" class="form-control" placeholder="La tua email" required>
                     </div>
-                  </div>
-                  <div class="col-lg-4 offset-lg-2 access-mobile-bg">
-                    <div class="access-login">
-                      <h3>Personale scolastico</h3>
-                      <p class="text-large">Entra nel sito della scuola con le tue credenziali per gestire contenuti,
-                        visualizzare circolari e altre funzionalità.</p>
-                      <div class="access-login-form">
-                        <div class="form-group">
-                          <label for="email">Email address</label>
-                          <input id="email" type="email" class="form-control" placeholder="La tua email">
-                        </div>
-                        <div class="form-group mb-3">
-                          <label for="password">Password</label>
-                          <input id="password" type="password" class="form-control" placeholder="Password">
-                        </div>
+                    <div class="form-group mb-3">
+                      <label for="password">Password</label>
+                      <input id="password" type="password" class="form-control" placeholder="Password" required>
+                    </div>
 
-                        <div class="row variable-gutters mb-4">
-                          <div class="col text-right text-underline">
-                            <p><a href="###">Password dimenticata?</a></p>
-                          </div>
-                        </div>
-
-                        <div class="row variable-gutters">
-                          <div class="col-lg-6 mb-4">
-                            <div class="form-check form-check-inline">
-                              <input id="checkbox-reminder" type="checkbox">
-                              <label for="checkbox-reminder">Ricordami</label>
-                            </div>
-                          </div>
-                          <div class="col-lg-6 mb-4">
-                            <button type="submit" class="btn btn-white btn-block rounded" name="login"
-                              value="Accedi">Accedi</button>
-                          </div>
-                        </div>
-
-                        <div class="row variable-gutters">
-                          <div class="col text-center">
-                            <p>Non hai un account? <a href="###" class="text-underline">Iscriviti</a></p>
-                          </div>
-                        </div>
-
+                    <div class="row variable-gutters mb-4">
+                      <div class="col text-right text-underline">
+                        <p><a href="#">Password dimenticata?</a></p>
                       </div>
                     </div>
+
+                    <div class="row variable-gutters">
+                      <div class="col-lg-6 mb-4">
+                        <div class="form-check form-check-inline">
+                          <input id="checkbox-reminder" type="checkbox">
+                          <label for="checkbox-reminder">Ricordami</label>
+                        </div>
+                      </div>
+                      <div class="col-lg-6 mb-4">
+                        <button type="submit" class="btn btn-white btn-block rounded" name="login"
+                          value="Accedi">Accedi</button>
+                      </div>
+                    </div>
+
+                    <div class="row variable-gutters">
+                      <div class="col text-center">
+                        <p>Non hai un account? <a href="#" class="text-underline">Iscriviti</a></p>
+                      </div>
+                    </div>
+
                   </div>
                 </div>
               </div>
-            </form>
+            </div>
           </div>
-        </div>
+        </form>
       </div>
     </div>
-    <!-- End Access Modal -->
+  </div>
+</div>
+<!-- End Access Modal -->
+
+<!-- Firebase login script -->
+<script type="module">
+  // Import SDK Firebase (versione modular)
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+  import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+  // Configurazione Firebase (sostituisci con i tuoi valori)
+  const firebaseConfig = {
+    apiKey: "YOUR_API_KEY",
+    authDomain: "YOUR_PROJECT.firebaseapp.com",
+    projectId: "YOUR_PROJECT_ID",
+    storageBucket: "YOUR_PROJECT.appspot.com",
+    messagingSenderId: "YOUR_SENDER_ID",
+    appId: "YOUR_APP_ID"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+
+  // Login handler
+  const loginForm = document.getElementById("login-form");
+  loginForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+    try {
+      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+      alert("Login effettuato: " + userCredential.user.email);
+      // Chiudi modale dopo login
+      $('#access-modal').modal('hide'); // ✅ se usi Bootstrap con jQuery
+    } catch (error) {
+      alert("Errore: " + error.message);
+    }
+  });
+</script>
 
 
 
