@@ -1,0 +1,83 @@
+  <style>
+    body { background: #f5f7fa; }
+    .header-area { background: linear-gradient(135deg, #0066CC 0%, #003366 100%); color: white; padding: 2rem 0; }
+    .welcome-card { margin-top: -3rem; }
+  </style>
+
+  <main class="container mt-5">
+    <div class="row">
+      <div class="col-12 col-md-4 mb-4">
+        <div class="card shadow-sm">
+          <div class="card-body text-center">
+            <h5 class="card-title">Profilo</h5>
+            <p class="card-text">Visualizza e modifica i tuoi dati personali.</p>
+            <button class="btn btn-primary w-100" id="profileBtn">Vai al profilo</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-md-4 mb-4">
+        <div class="card shadow-sm">
+          <div class="card-body text-center">
+            <h5 class="card-title">Messaggi</h5>
+            <p class="card-text">Leggi e invia comunicazioni</p>
+            <button class="btn btn-primary w-100" id="messagesBtn">Apri Messaggi</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row mt-4">
+      <div class="col-12">
+        <div class="card welcome-card shadow-sm p-4">
+          <h4>Benvenuto, <span id="userEmail">utente</span></h4>
+          <p>Da qui puoi gestire il tuo profilo e accedere ai servizi</p>
+          <button class="btn btn-outline-danger" id="logoutBtn">Esci</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+
+  <!-- Bootstrap Italia JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap-italia@2.16.0/dist/js/bootstrap-italia.bundle.min.js" integrity="sha384-kM8LhQm/0fM5x7e3D0U1p1oL8a2b3c4d5e6f7g8h9i0j1k2l3m4n5o6p7q8r9s0t" crossorigin="anonymous"></script>
+
+  <!-- Firebase Auth -->
+  <script type="module">
+    import { initializeApp } from 'https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js';
+    import { getAuth, signOut, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js';
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyBj8bTU5CQl5DzO3AW9uYs5ey9bOZocU4A",
+      authDomain: "jonezlogin.firebaseapp.com",
+      projectId: "jonezlogin",
+      storageBucket: "jonezlogin.firebasestorage.app",
+      messagingSenderId: "977987717025",
+      appId: "1:977987717025:web:d26d6c44e7f3612e34ede0",
+      measurementId: "G-L3QPNQK8SF"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    const userEmail = document.getElementById('userEmail');
+
+    // Mostra email utente o reindirizza se non loggato
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        userEmail.textContent = user.email;
+      } else {
+        window.location.href = 'login.html';
+      }
+    });
+
+    // Logout
+    document.getElementById('logoutBtn').addEventListener('click', async () => {
+      await signOut(auth);
+      window.location.href = 'login.html';
+    });
+
+    // Pulsanti esempio
+    document.getElementById('profileBtn').addEventListener('click', () => alert('Vai al profilo'));
+    document.getElementById('gradesBtn').addEventListener('click', () => alert('Apri registro elettronico'));
+    document.getElementById('messagesBtn').addEventListener('click', () => alert('Apri messaggi'));
+  </script>
