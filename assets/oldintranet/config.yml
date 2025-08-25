@@ -16,6 +16,7 @@ collections:
       - { name: "title", label: "Titolo", widget: "string" }
       - { name: "date", label: "Data", widget: "datetime", default: "", hidden: true }
       - { name: "permalink", label: "Link personalizzato", widget: "string", required: true }
+      - { name: "img", label: "img", widget: "string", required: false }
       - { name: "body", label: "page", widget: "markdown" }
   - name: "posts"
     label: "Post"
