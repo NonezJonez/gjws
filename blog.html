@@ -1,0 +1,52 @@
+---
+layout: default
+title: "Blog"
+permalink: /Blog/
+---
+
+<section class="section bg-white py-4 py-lg-5">
+  <div class="container">
+    <div class="row variable-gutters">
+      <div class="col-12">
+        <div class="title-section pb-4">
+          <h1 class="h2">Notizie</h1>
+        </div>
+      </div>
+    </div>
+
+    <div class="row variable-gutters">
+      {% for post in site.posts %}
+      <div class="col-lg-4 col-md-6 mb-4">
+        <div class="card card-bg card-vertical-thumb bg-white card-thumb-rounded h-100">
+          <div class="card-body">
+            <div class="card-content">
+              <h3 class="h5">
+                <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+              </h3>
+              <p>{{ post.excerpt | strip_html | truncate: 150 }}</p>
+            </div>
+            {% if post.image %}
+            <div class="card-thumb">
+              <img src="{{ post.image }}" alt="{{ post.title }}">
+            </div>
+            {% endif %}
+          </div><!-- /card-body -->
+          <div class="card-comments-wrapper">
+            <div class="card-avatar-img">
+              <img src="{{ post.author_img | default: 'https://2.gravatar.com/avatar/53241b11fb23d653d6c97ab192be4c459ef4201d71bffe0b87f8c09c061c577b?size=256&d=initials' }}" alt="Profilo autore">
+            </div>
+            <div class="card-avatar-content">
+              <p class="font-weight-normal">da 
+                <a href="/gabriel-jones/">
+                  <strong class="text-underline"><u>Gabriel Jones</u></strong>
+                </a>
+              </p>
+              <small>{{ post.role | default: "Amministratore" }}</small>
+            </div>
+          </div><!-- /card-comments-wrapper -->
+        </div><!-- /card -->
+      </div>
+      {% endfor %}
+    </div><!-- /row -->
+  </div><!-- /container -->
+</section>
