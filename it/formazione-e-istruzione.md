@@ -4,7 +4,7 @@ title: Formazione e Istruzione
 date: 2025-08-25T22:01:00.000+02:00
 permalink: /fi/
 img: https://udgj.it/assets/base.png
-argomento: educazione
+argomento: edu
 ---
 Questa pagina raccoglie tutti gli articoli, le pagine e i materiali legati alle attività dedicate ai bambini dell’asilo e della scuola primaria, organizzate con l’associazione Mangia Libri ODV, l’oratorio e il grest.
 
