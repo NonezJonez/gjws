@@ -6,5 +6,5 @@ lang: it
 ref: homepage
 permalink: /dipartimenti/politico/
 order: 1
-argomento: edu
+argomento: politica
 ---
