@@ -52,66 +52,51 @@ layout: default
           style="background-image: url('https://www.usa.gov/s3/files/styles/webp/public/2024-01/Banner_img_Education.png.webp?itok=nkoenBiw');"></div>
       </section><!-- /section -->
 
-      <section class="section bg-white py-2 py-lg-3 py-xl-5">
-        <div class="container">
-          <div class="row variable-gutters">
-            <div class="col-lg-4">
-              <div class="title-section pb-4">
-                <h2>Notizie</h2>
-              </div><!-- /title-section -->
-              <div class="card card-bg card-vertical-thumb bg-white card-thumb-rounded">
-                <div class="card-body">
-                  <div class="card-content">
-                    <h3 class="h5">
-                      <a href="#">Svelato il mistero dei "barioni nascosti", la materia che mancava nell'Universo</a>
-                    </h3>
-                    <p>Un team di ricercatori dell'Istituto nazionale di astrofisica (INAF) è riuscito ad individuare la materia ordinaria mancante dell’Universo.</p>
-                  </div>
-                  <div class="card-thumb">
-                    <img src="assets/placeholders/placeholder-190x290.jpg" alt="Descrizione immagine">
-                  </div>
-                </div><!-- /card-body -->
-                <div class="card-comments-wrapper">
-                  <div class="card-avatar-img">
-                    <img src="assets/placeholders/img-avatar-250x250.png" alt="Immagine profilo">
-                  </div><!-- /card-avatar-img -->
-                  <div class="card-avatar-content">
-                    <p class="font-weight-normal">da <a href="#" aria-label="vai alla pagina Nome Cognome"><strong
-                          class="text-underline"><u>Nome Cognome</u></strong></a></p>
-                    <small>Professore</small>
-                  </div><!-- /card-avatar-content -->
-                </div><!-- /card-comments-wrapper -->
-              </div><!-- /card -->
-              <div class="py-4">
-                <a aria-label="Leggi tutte le notizie" class="text-underline" href="#"><strong>Leggi tutte</strong></a>
-              </div>
-            </div><!-- /col-lg-4 -->
-            <div class="col-lg-4">
-              <div class="title-section pb-4">
-                <h2>Circolari</h2>
-              </div><!-- /title-section -->
-              <div class="card card-bg card-vertical-thumb bg-white card-thumb-rounded">
-                <div class="card-body">
-                  <div class="card-content">
-                    <h3 class="h5"><a href="#">Partecipazione premiazione del Premio Letterario Giuseppe Mazzotti</a></h3>
-                    <small class="h6 text-greendark">Circolare 81</small>
-                    <p class="text-normal">Si comunica che il giorno 19 Ottobre le alunne della classe 4<sup>a</sup> AL Bettin
-                      Elena, Cecchin Sabrina, Ferroni Chiara, Moretta Beatrice, Pellencin Benedetta parteciperanno ad
-                      una gara a squadre tra i vincitori della 37<sup>a</sup> edizione 2019</p>
-                  </div>
-                </div><!-- /card-body -->
-              </div><!-- /card -->
-              <div class="py-4">
-                <a aria-label="Leggi tutte le circolari" class="text-underline" href="#"><strong>Leggi
-                    tutte</strong></a>
-              </div>
-            </div><!-- /col-lg-4 -->
-          </div><!-- /row -->
-        </div><!-- /container -->
-      </section><!-- /section -->
 
+<section class="section bg-white py-2 py-lg-3 py-xl-5">
+  <div class="container">
+    <div class="row variable-gutters">
+      {% for post in site.posts limit:3 %}
+      <div class="col-lg-4">
+        <div class="card card-bg card-vertical-thumb bg-white card-thumb-rounded">
+          <div class="card-body">
+            <div class="card-content">
+              <h3 class="h5">
+                <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+              </h3>
+              <p>{{ post.excerpt | strip_html | truncate: 50 }}</p>
+            </div>
+            {% if post.image %}
+            <div class="card-thumb">
+              <img src="/Jonez Post.png" alt="{{ post.title }}">
+            </div>
+            {% endif %}
+          </div><!-- /card-body -->
+          <div class="card-comments-wrapper">
+            <div class="card-avatar-img">
+              <img src="{{ post.author_img | default: '/assets/placeholders/img-avatar-250x250.png' }}" alt="Profilo autore">
+            </div>
+            <div class="card-avatar-content">
+              <p class="font-weight-normal">da 
+                <a href="#">
+                  <strong class="text-underline"><u>Gabriel Jones</u></strong>
+                </a>
+              </p>
+              <small>Amministratore</small>
+            </div>
+          </div><!-- /card-comments-wrapper -->
+        </div><!-- /card -->
+      </div><!-- /col-lg-4 -->
+      {% endfor %}
+    </div><!-- /row -->
 
-      
+    <div class="py-4">
+      <a aria-label="Leggi tutte le notizie" class="text-underline" href="/notizie/">
+        <strong>Leggi tutte</strong>
+      </a>
+    </div>
+  </div><!-- /container -->
+</section><!-- /section -->
       
 
 
