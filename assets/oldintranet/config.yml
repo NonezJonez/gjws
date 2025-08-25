@@ -1,6 +1,6 @@
 backend:
   name: git-gateway
-  branch: "48891"
+  branch: "base"
 
 media_folder: "assets"
 public_folder: "/assets"
@@ -8,7 +8,7 @@ public_folder: "/assets"
 collections:
   - name: "pagine_it"
     label: "Pagine"
-    folder: "content/pagine"
+    folder: "it"
     create: true
     slug: "{{slug}}"
     fields:
@@ -32,15 +32,3 @@ collections:
       - { label: "Tag", name: "tags", widget: "list" }
       - { label: "Contenuto", name: "body", widget: "markdown" }
       - { label: "Autore", name: "autore", widget: "string", default: "Redazione: Gabriel Matteo Jones" }
-  - name: "private_pages"
-    label: "Pagine ad autorizzazione"
-    folder: "content/private/"
-    create: true
-    slug: "{{slug}}"
-    editor:
-      preview: false
-    fields:
-      - { label: "Titolo", name: "title", widget: "string" }
-      - { label: "Layout", name: "layout", widget: "hidden", default: "riservato" }
-      - { label: "Permalink", name: "permalink", widget: "string" }
-      - { label: "Corpo", name: "body", widget: "markdown" }
