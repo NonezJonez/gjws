@@ -31,7 +31,9 @@ layout: default
             </div><!-- /col-md-6 -->
           </div><!-- /row -->
         </div><!-- /container -->
-        <div class="hero-img d-none d-md-block" style="background-image: url('https://www.usa.gov/s3/files/styles/webp/public/2024-01/Banner_img_Education.png.webp?itok=nkoenBiw');"></div>
+        <div class="hero-img d-none d-md-block"
+            style="background-image: url({{ post.author_img | default: 'https://avatars.githubusercontent.com/gabrielmatteojones' }});">
+        </div>
       </section>
 
 
