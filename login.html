@@ -1,0 +1,211 @@
+
+  <style>
+    body { background: #f5f7fa; }
+    .login-hero { background: linear-gradient(135deg, #0066CC 0%, #003366 100%); }
+    .logo-circle { width: 56px; height: 56px; border-radius: 50%; background: #fff; display:flex; align-items:center; justify-content:center; font-size:28px; }
+  </style>
+</head>
+<body>
+  <header class="it-header-wrapper it-header-sticky">
+    <div class="it-navwrapper">
+      <div class="it-header-center-wrapper">
+        <div class="container d-flex align-items-center gap-3 py-3">
+          <div class="logo-circle" aria-hidden="true">🎓</div>
+          <div>
+            <h1 class="h5 mb-0">Accesso GJWS</h1>
+            <p class="mb-0 small text-secondary">Accesso riservato a <b>personale</b></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="login-hero py-5 mb-4 text-white">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-12 col-lg-7">
+          <h2 class="h3 fw-semibold">Accedi</h2>
+          <p class="mb-0 opacity-75">Utilizza le credenziali aziendali (email e password). In caso di smarrimento, contatta il supporto interno.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <main class="container pb-5">
+    <div class="row justify-content-center">
+      <div class="col-12 col-md-8 col-lg-5">
+        <!-- Messaggi -->
+        <div id="alertPlaceholder" class="mb-3" role="region" aria-live="polite"></div>
+
+        <!-- Card login -->
+        <div class="card shadow-sm">
+          <div class="card-body p-4 p-lg-5">
+            <div class="d-flex align-items-center gap-3 mb-3">
+              <div class="logo-circle" aria-hidden="true">🔐</div>
+              <div>
+                <h2 class="h4 mb-0">Accesso</h2>
+                <p class="mb-0 text-secondary small">Autenticazione con Email/Password</p>
+              </div>
+            </div>
+
+            <form id="loginForm" novalidate>
+              <div class="mb-3">
+                <label for="email" class="form-label">Email Aziendale</label>
+                <input type="email" class="form-control" id="email" name="email" required autocomplete="username" placeholder="codice-dipendente@jonez.it" />
+                <div class="invalid-feedback">Inserisci un indirizzo email valido.</div>
+              </div>
+              <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" class="form-control" id="password" name="password" required autocomplete="current-password" />
+                <div class="invalid-feedback">La password è obbligatoria.</div>
+              </div>
+
+              <button id="loginBtn" class="btn btn-primary w-100 mb-2" type="submit">
+                <span class="spinner-border spinner-border-sm me-2 d-none" id="btnSpinner" role="status" aria-hidden="true"></span>
+                Accedi
+              </button>
+            </form>
+
+            <hr class="my-4" />
+            <p class="small text-secondary mb-0">Accedendo accetti l'<a href="#" class="link-primary">informativa sulla privacy</a> del trattamento dei dati personali.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="it-footer small bg-light border-top">
+    <div class="container py-4">
+      <div class="row">
+        <div class="col-12 col-md-8">
+          <p class="mb-1">© 2025 Istituto Comprensivo – Tutti i diritti riservati</p>
+          <p class="mb-0 text-secondary">Modello ispirato a Designers Italia – Scuole</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap Italia JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap-italia@2.16.0/dist/js/bootstrap-italia.bundle.min.js" integrity="sha384-kM8LhQm/0fM5x7e3D0U1p1oL8a2b3c4d5e6f7g8h9i0j1k2l3m4n5o6p7q8r9s0t" crossorigin="anonymous"></script>
+
+  <!-- Firebase Auth (ES Modules via CDN) -->
+  <script type="module">
+    // Import ESM modules directly from the official gstatic CDN (recommended for quick starts)
+    import { initializeApp } from 'https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js';
+    import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, sendPasswordResetEmail, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js';
+
+    // \u26A0\uFE0F  Queste chiavi sono pubbliche per app web e NON sono segreti.
+    // Configurazione fornita dall'utente
+    const firebaseConfig = {
+      apiKey: "AIzaSyBj8bTU5CQl5DzO3AW9uYs5ey9bOZocU4A",
+      authDomain: "jonezlogin.firebaseapp.com",
+      projectId: "jonezlogin",
+      storageBucket: "jonezlogin.firebasestorage.app",
+      messagingSenderId: "977987717025",
+      appId: "1:977987717025:web:d26d6c44e7f3612e34ede0",
+      measurementId: "G-L3QPNQK8SF"
+    };
+
+    // Inizializza Firebase
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    // Helper per messaggi
+    const alertPlaceholder = document.getElementById('alertPlaceholder');
+    function showAlert(type, message) {
+      alertPlaceholder.innerHTML = `
+        <div class="alert alert-${type} alert-dismissible fade show" role="alert">
+          <div>${message}</div>
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Chiudi"></button>
+        </div>`;
+    }
+
+    // Validazione UI
+    function validate(form) {
+      let valid = true;
+      form.querySelectorAll('input[required]').forEach((el) => {
+        if (!el.value?.trim()) {
+          el.classList.add('is-invalid');
+          valid = false;
+        } else {
+          el.classList.remove('is-invalid');
+        }
+      });
+      return valid;
+    }
+
+    // Gestione submit login
+    const loginForm = document.getElementById('loginForm');
+    const loginBtn = document.getElementById('loginBtn');
+    const btnSpinner = document.getElementById('btnSpinner');
+
+    loginForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (!validate(loginForm)) return;
+
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value;
+
+      try {
+        btnSpinner.classList.remove('d-none');
+        loginBtn.setAttribute('disabled', 'disabled');
+        const cred = await signInWithEmailAndPassword(auth, email, password);
+        showAlert('success', `Benvenuto/a, accesso eseguito come <strong>${cred.user.email}</strong>.`);
+      } catch (err) {
+        const map = {
+          'auth/invalid-email': 'Indirizzo email non valido.',
+          'auth/user-disabled': 'Utente disabilitato. Contatta la segreteria.',
+          'auth/user-not-found': 'Utente non registrato.',
+          'auth/wrong-password': 'Password errata.',
+          'auth/too-many-requests': 'Troppe richieste. Riprova più tardi.'
+        };
+        showAlert('danger', map[err.code] || `Errore: ${err.message}`);
+      } finally {
+        btnSpinner.classList.add('d-none');
+        loginBtn.removeAttribute('disabled');
+      }
+    });
+
+    // Registrazione veloce (facoltativa)
+    document.getElementById('signupBtn').addEventListener('click', async () => {
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value;
+      if (!email || !password) {
+        showAlert('warning', 'Inserisci email e password per creare un nuovo account.');
+        return;
+      }
+      try {
+        const cred = await createUserWithEmailAndPassword(auth, email, password);
+        showAlert('success', `Account creato per <strong>${cred.user.email}</strong>. Ora sei autenticato.`);
+      } catch (err) {
+        showAlert('danger', `Impossibile creare l'account: ${err.message}`);
+      }
+    });
+
+    // Password dimenticata
+    document.getElementById('forgotLink').addEventListener('click', async (e) => {
+      e.preventDefault();
+      const email = document.getElementById('email').value.trim();
+      if (!email) {
+        showAlert('warning', 'Inserisci la tua email per ricevere il link di reset.');
+        return;
+      }
+      try {
+        await sendPasswordResetEmail(auth, email);
+        showAlert('info', 'Ti abbiamo inviato un’email con le istruzioni per reimpostare la password.');
+      } catch (err) {
+        showAlert('danger', `Errore durante l\'invio dell\'email: ${err.message}`);
+      }
+    });
+
+    // Monitoraggio stato auth (esempio)
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        // Qui potresti reindirizzare al portale: window.location.href = '/area-riservata.html';
+        console.log('Utente autenticato:', user.email);
+      } else {
+        console.log('Nessun utente autenticato.');
+      }
+    });
+  </script>
